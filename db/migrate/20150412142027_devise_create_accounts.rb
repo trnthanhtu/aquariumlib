@@ -4,8 +4,12 @@ class DeviseCreateAccounts < ActiveRecord::Migration
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-      t.string :role
       t.boolean :delete_flag
+      t.boolean :admin
+      t.string  :name
+      t.string  :image
+      t.string  :detail
+      t.string  :address
       t.timestamps
 
     end

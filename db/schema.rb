@@ -11,27 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412142027) do
+ActiveRecord::Schema.define(version: 20150416034804) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.string   "role",                   limit: 255
-    t.boolean  "delete_flag",            limit: 1
+    t.string   "email",              limit: 255, default: "", null: false
+    t.string   "encrypted_password", limit: 255, default: "", null: false
+    t.boolean  "delete_flag",        limit: 1
+    t.boolean  "admin",              limit: 1
+    t.string   "name",               limit: 255
+    t.string   "image",              limit: 255
+    t.string   "detail",             limit: 255
+    t.string   "address",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
-  add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
+
+  create_table "accounts_roles", id: false, force: :cascade do |t|
+    t.integer  "role_id",     limit: 4
+    t.integer  "account_id",  limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.boolean  "delete_flag", limit: 1
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -68,9 +71,6 @@ ActiveRecord::Schema.define(version: 20150412142027) do
     t.string   "vietnamese_name", limit: 255
     t.string   "address",         limit: 255
     t.text     "description",     limit: 65535
-    t.integer  "level",           limit: 4
-    t.string   "size",            limit: 255
-    t.string   "address_grow",    limit: 255
     t.boolean  "delete_flag",     limit: 1
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
@@ -79,10 +79,23 @@ ActiveRecord::Schema.define(version: 20150412142027) do
 
   add_index "plants", ["category_id"], name: "index_plants_on_category_id", using: :btree
 
+  create_table "post_sells", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.string   "image",       limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.boolean  "delete_flag", limit: 1
+    t.integer  "account_id",  limit: 4
+  end
+
+  add_index "post_sells", ["account_id"], name: "index_post_sells_on_account_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.string   "title",        limit: 255
     t.string   "detail",       limit: 255
-    t.text     "discription",  limit: 65535
+    t.string   "image",        limit: 255
+    t.text     "description",  limit: 65535
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "delete_flag",  limit: 1
@@ -99,9 +112,18 @@ ActiveRecord::Schema.define(version: 20150412142027) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.integer  "post_id",     limit: 4
+    t.integer  "account_id",  limit: 4
   end
 
+  add_index "ratings", ["account_id"], name: "index_ratings_on_account_id", using: :btree
   add_index "ratings", ["post_id"], name: "index_ratings_on_post_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.boolean  "delete_flag", limit: 1
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "shops", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -110,33 +132,28 @@ ActiveRecord::Schema.define(version: 20150412142027) do
     t.string   "person",       limit: 255
     t.integer  "phone_number", limit: 4
     t.string   "image",        limit: 255
-    t.string   "home_url",     limit: 255
+    t.string   "website",      limit: 255
     t.boolean  "delete_flag",  limit: 1
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
 
   create_table "technicals", force: :cascade do |t|
-    t.integer  "temperature", limit: 4
-    t.integer  "light",       limit: 4
-    t.integer  "pH",          limit: 4
-    t.text     "fertilizer",  limit: 65535
-    t.string   "trophic",     limit: 255
-    t.text     "notice",      limit: 65535
-    t.boolean  "delete_flag", limit: 1
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "plant_id",    limit: 4
+    t.integer  "temperature",  limit: 4
+    t.integer  "light",        limit: 4
+    t.integer  "pH",           limit: 4
+    t.text     "fertilizer",   limit: 65535
+    t.string   "trophic",      limit: 255
+    t.text     "notice",       limit: 65535
+    t.integer  "level",        limit: 4
+    t.string   "size",         limit: 255
+    t.string   "address_grow", limit: 255
+    t.boolean  "delete_flag",  limit: 1
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "plant_id",     limit: 4
   end
 
   add_index "technicals", ["plant_id"], name: "index_technicals_on_plant_id", using: :btree
-
-  create_table "type_posts", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.boolean  "delete_flag", limit: 1
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
 
 end

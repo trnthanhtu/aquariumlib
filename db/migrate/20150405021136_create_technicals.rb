@@ -4,9 +4,12 @@ class CreateTechnicals < ActiveRecord::Migration
       t.integer :temperature
       t.integer :light
       t.integer :pH
-      t.text :fertilizer
-      t.string :trophic
-      t.text :notice
+      t.text    :fertilizer
+      t.string  :trophic
+      t.text    :notice
+      t.integer :level
+      t.string  :size
+      t.string  :address_grow
       t.boolean :delete_flag
       t.timestamps null: false
       t.references :plant, index: true

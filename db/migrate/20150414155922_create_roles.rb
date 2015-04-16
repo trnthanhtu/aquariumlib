@@ -1,9 +1,9 @@
-class CreateTypePosts < ActiveRecord::Migration
+class CreateRoles < ActiveRecord::Migration
   def change
-    create_table :type_posts do |t|
+    create_table :roles do |t|
       t.string :name
-      t.text :description
       t.boolean :delete_flag
+
       t.timestamps null: false
     end
   end

@@ -1,18 +1,18 @@
 RailsAdmin.config do |config|
 
   ### Popular gems integration
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :account
-  # end
-  # config.current_user_method(&:current_account)
-  ## == Devise ==
+  config.authenticate_with do
+    warden.authenticate! scope: :account
+  end
+  config.current_user_method(&:current_account)
+  # ## == Devise ==
   # config.authenticate_with do
   #   warden.authenticate! scope: :user
   # end
   # config.current_user_method(&:current_user)
 
   ## == Cancan ==
-  # config.authorize_with :cancan
+   config.authorize_with :cancan
 
   ## == PaperTrail ==
   # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
@@ -20,12 +20,11 @@ RailsAdmin.config do |config|
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
  config.actions do
-    dashboard
-                       # mandatory
+    dashboard                      # mandatory
     index do                        # mandatory
       controller do
         proc do
-          @objects = @abstract_model.where('isnull(delete_flag) or delete_flag = 0')
+          @objects = @abstract_model.where('isnull(delete_flag) or delete_flag = 0').order('created_at desc')
         end
       end
     end
@@ -71,7 +70,33 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-      exclude_fields :delete_flag, :updated_at
+      exclude_fields :delete_flag, :updated_at , :id
+    end
+  end
+
+  config.model Account do
+    # field :roles do
+    #   inverse_of :roles
+    # end
+    create do
+      include_all_fields
+      exclude_fields :delete_flag, :roles
+      # field :description, :ck_editor
+    end
+    edit do
+       include_all_fields
+       exclude_fields :delete_flag
+       field :admin do
+        visible do
+            bindings[:view]._current_user.roles.include?(:member)
+          # current_user.roles.include?(:super_admin) # metacode
+        end
+      end
+
+    end
+    list do
+      include_all_fields
+      exclude_fields :delete_flag, :updated_at, :admin, :id
     end
   end
 
@@ -83,7 +108,7 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-      exclude_fields :delete_flag, :updated_at
+      exclude_fields :delete_flag, :updated_at, :id
     end
   end
 
@@ -91,7 +116,7 @@ RailsAdmin.config do |config|
   config.model Rating do
     list do
       include_all_fields
-      exclude_fields :delete_flag
+      exclude_fields :delete_flag, :id
     end
 
     edit do
@@ -117,9 +142,21 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at
+       exclude_fields :delete_flag, :created_at, :updated_at, :id
     end
   end
+
+  config.model Role do
+    edit do
+      include_all_fields
+      exclude_fields :delete_flag
+    end
+    list do
+      include_all_fields
+       exclude_fields :delete_flag, :created_at, :updated_at, :accounts, :id
+    end
+  end
+
 
   # Config for Post
   config.model Post do
@@ -129,19 +166,7 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at
-    end
-  end
-
-  # Config for Type_post
-  config.model TypePost do
-    edit do
-      include_all_fields
-      exclude_fields :delete_flag
-    end
-    list do
-      include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at
+       exclude_fields :delete_flag, :created_at, :updated_at, :id
     end
   end
 
@@ -153,7 +178,7 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at
+       exclude_fields :delete_flag, :created_at, :updated_at, :id
     end
   end
 
@@ -165,7 +190,7 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at
+       exclude_fields :delete_flag, :created_at, :updated_at, :id
     end
   end
 end

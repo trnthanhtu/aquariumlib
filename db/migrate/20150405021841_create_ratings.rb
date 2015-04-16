@@ -5,6 +5,7 @@ class CreateRatings < ActiveRecord::Migration
       t.boolean :delete_flag
       t.timestamps null: false
       t.references :post, index: true
+      t.references :account, index: true
     end
   end
 end

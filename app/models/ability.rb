@@ -4,19 +4,21 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
+      # user ||= User.new # guest user (not logged in)
+      # if user.role? :member
+      #   can :manage, :all
+      #   can :access, :rails_admin
+      # else
+      #    can :manage, [Plant]
+      #    can :access, :rails_admin
+      # end
     #
-    # The first argument to `can` is the action you are giving the user 
+    # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.
     #
-    # The second argument is the resource the user can perform the action on. 
+    # The second argument is the resource the user can perform the action on.
     # If you pass :all it will apply to every resource. Otherwise pass a Ruby
     # class of the resource.
     #
@@ -27,6 +29,20 @@ class Ability
     #   can :update, Article, :published => true
     #
     # See the wiki for details:
-    # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities                 # allow everyone to read everything
+    if user && user.admin?
+      can :access, :rails_admin       # only allow admin users to access Rails Admin
+      can :dashboard                  # allow access to dashboard
+      if user.role? :super_admin
+        can :manage, [Plant, PlantImage, Account, Category, Post, Rating, Shop, Technical, Contact, Role, PostSell]            # allow superadmins to do anything
+      elsif user.role? :member
+         can [:read, :create, :update], [Plant, PlantImage, Post, Technical, Shop]
+         can [:read, :destroy], Contact
+         can [:show, :update], Account, :id => user.id
+         can :index, Role, :id =>user.roles
+      elsif user.role? :guest
+        # can :update, Product, :hidden => false  # allow sales to only update visible products
+      end
+    end
   end
 end

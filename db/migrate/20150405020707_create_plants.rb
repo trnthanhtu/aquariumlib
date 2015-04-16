@@ -5,10 +5,7 @@ class CreatePlants < ActiveRecord::Migration
       t.string :scientic_name
       t.string :vietnamese_name
       t.string :address
-      t.text :description
-      t.integer :level
-      t.string :size
-      t.string :address_grow
+      t.text   :description
       t.boolean :delete_flag
       t.timestamps null: false
       t.references :category, index: true

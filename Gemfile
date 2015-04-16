@@ -25,7 +25,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'rails_admin'
 gem 'ckeditor'
 gem 'devise'
-gem "cancan"
+gem "cancancan"
+gem "carrierwave"
+gem "rmagick"
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
