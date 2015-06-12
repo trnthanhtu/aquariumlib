@@ -2,12 +2,14 @@
 <html dir="ltr" lang="en">
   <head>
     <meta charset="UTF-8" />
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
     <script type="text/javascript">
     //<![CDATA[
     try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"../cdn-cgi/nexp/dok3v=1613a3a185/index.htm"},atok:"394c9dbeb73dec4dfa0d34834da0dc3c",petok:"98f783ea1173397518bcef5efa9b4591be533c70-1428505712-1800",zone:"template-help.com",rocket:"0",apps:{"abetterbrowser":{"ie":"7"},"ga_key":{"ua":"UA-7078796-5","ga_bs":"2"}}}];!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=7e13c32551/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
     //]]>
     </script>
-    <script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script><title>Family  flowers</title>
+    <script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script><title>Aquarium-Library</title>
     <base hrefx="http://livedemo00.template-help.com/opencart_47588/" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, , initial-scale=1.0">
     <script>
@@ -18,6 +20,7 @@
     window.scrollTo(0,1);
     }
     </script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="/assets/catalog/view/theme/theme324/stylesheet/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="/assets/catalog/view/theme/theme324/stylesheet/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
     <link href="/assets/catalog/view/theme/theme324/stylesheet/cloud-zoom.css" rel="stylesheet" type="text/css" />
@@ -75,7 +78,7 @@
     <script type="text/javascript" src="/assets/catalog/view/javascript/jquery/jquery.total-storage.min.js"></script>
     <!--[if  IE 8]>
     <style>
-      .success, #header #cart .content  { border:1px solid #e7e7e7;}
+    .success, #header #cart .content  { border:1px solid #e7e7e7;}
     </style>
     <![endif]-->
     <!--[if  IE 8]>
@@ -89,6 +92,8 @@
     </script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="/assets/catalog/view/theme/theme324/stylesheet/livesearch.css"/>
+    <script type="text/javascript" src="/assets/catalog/view/javascript/c2.js"></script>
+    <script type="text/javascript" src="/assets/catalog/view/javascript/jqueryEasing.js"></script>
     <script type="text/javascript">
     /* <![CDATA[ */
     var _gaq = _gaq || [];
@@ -103,68 +108,16 @@
     /* ]]> */
     </script>
   </head>
-  <body class="product-category"><a id="hidden" href="index.htm"></a>
+  <body class="product-category"><a id="hidden" href=""></a>
   <div class="swipe-left"></div>
   <div id="body">
     <div class="swipe">
       <div class="swipe-menu">
         <ul class="links">
           <li class="first"><a class="" href="index.php-route=common-home.htm"><i class="icon-home"></i>Home</a></li>
-          <li><a class="" href="index.php-route=account-wishlist.htm" id="wishlist-total"><i class="icon-star"></i>Wish List (0)</a></li>
           <li><a class="" href="index.php-route=account-account.htm"><i class="icon-user"></i>My Account</a></li>
-          <li><a class="" href="index.php-route=checkout-cart.htm"><i class="icon-shopping-cart"></i>Shopping Cart</a></li>
-          <li><a class="" href="index.php-route=checkout-checkout.htm"><i class="icon-check"></i>Checkout</a></li>
-          <li class="login_h"><a href="index.php-route=account-login.htm"><i class="icon-lock"></i>Log In</a></li> <li><a href="index.php-route=account-register.htm"><i class="icon-file-alt"></i>Create an account</a></li>           </ul>
-          <div id="language" class="header-button">
-            <div class="heading">en<i class="icon-angle-down"></i></div>
-            <div class="heading1"><i class="icon-globe"></i>Language<i class="icon-angle-down"></i></div>
-            <ul>
-              <form action="index.php-route=module-language.htm" method="post" enctype="multipart/form-data">
-                <li><span alt="English" title="English" onClick="$('input[name=\'language_code\']').attr('value', 'en').submit(); $(this).parent().parent().submit();" >en</span>
-                <li><span alt="German" title="German" onClick="$('input[name=\'language_code\']').attr('value', 'de').submit(); $(this).parent().parent().submit();" >de</span>
-                <li><span alt="Spanish" title="Spanish" onClick="$('input[name=\'language_code\']').attr('value', 'es').submit(); $(this).parent().parent().submit();" >es</span>
-                <input type="hidden" name="language_code" value="" />
-                <input type="hidden" name="redirect" value="http://livedemo00.template-help.com/opencart_47588/index.php?route=product/category&amp;path=17" />
-              </li>
-            </form>
-          </ul>
-        </div>
-        <div id="currency" class="header-button">
-          <div>
-            <div class="heading-1"><i class="icon-money"></i>Currency<i class="icon-angle-down"></i></div>
-            <div class="heading">
-              $<i class="icon-angle-down"></i>
-            </div>
-          </div>
-          <ul>
-            <form action="index.php-route=module-currency.htm" method="post" enctype="multipart/form-data">
-              <li><a title="Euro" onClick="$('input[name=\'currency_code\']').attr('value', 'EUR').submit(); $(this).parent().parent().submit();"><span>€</span></a></li>
-              <li><a title="Pound Sterling" onClick="$('input[name=\'currency_code\']').attr('value', 'GBP').submit(); $(this).parent().parent().submit();"><span>£</span></a></li>
-              <li><a title="US Dollar"><span class="act">$</span></a></li>
-              <input type="hidden" name="currency_code" value="" />
-              <input type="hidden" name="redirect" value="http://livedemo00.template-help.com/opencart_47588/index.php?route=product/category&amp;path=17" />
-            </form>
-          </ul>
-        </div>
-        <ul class="foot">
-          <li><a href="index.php-route=information-information-amp-information_id=4.htm">About Us</a></li>
-          <li><a href="index.php-route=information-information-amp-information_id=6.htm">Delivery</a></li>
-          <li><a href="index.php-route=information-information-amp-information_id=3.htm">Privacy Policy</a></li>
-        </ul>
-        <ul class="foot foot-1">
-          <li><a href="index.php-route=information-contact.htm">Contact Us</a></li>
-          <li><a href="index.php-route=account-return-insert.htm">Returns</a></li>
-          <li><a href="index.php-route=information-sitemap.htm">Site Map</a></li>
-        </ul>
-        <ul class="foot foot-2">
-          <li><a href="index.php-route=product-manufacturer.htm">Brands</a></li>
-          <li><a href="index.php-route=account-voucher.htm">Gift Vouchers</a></li>
-          <li><a href="index.php-route=affiliate-account.htm">Affiliates</a></li>
-          <li><a href="index.php-route=product-special.htm">Specials</a></li>
-        </ul>
-        <ul class="foot foot-3">
-          <li><a href="index.php-route=account-order.htm">Order History</a></li>
-          <li><a href="index.php-route=account-newsletter.htm">Newsletter</a></li>
+          
+          <li class="login_h"><a href="index.php-route=account-login.htm"><i class="icon-lock"></i>Log In</a></li> <li><a href="index.php-route=account-register.htm"><i class="icon-file-alt"></i>Create an account</a></li>
         </ul>
       </div>
     </div>
@@ -177,208 +130,185 @@
               <div class="span12">
                 <div class="top-site">
                   <div class="right">
-                    <div id="search">
-                      <div class="inner">
-                        <div class="button-search"><i class="icon-search"></i><span>SEARCH</span></div>
-                        <input  type="text" name="search" placeholder="" value="" />
+
+                     <ul class="links">
+                  <%if session[:account_id] %>
+                    <li><a class="" href="<%=accountss_index_path%>"><i class="icon-user"></i>My Account</a></li>
+
+                    <li class="login_h"><a href="<%=sessionss_destroy_path%>"><i class="icon-lock"></i>Log Out</a></li>
+                  <%else%>
+                     <li class="login_h"><a href="<%=login_path%>"><i class="icon-lock"></i>Log In</a></li>
+                    <li><a href="<%=registry_path%>"><i class="icon-file-alt"></i>Create an account</a></li>
+                  <%end%>
+                  </ul>
+                  </div>
+                  <div class="toprow">
+                    <ul class="links">
+                    <li class="first"><a class="active" href="<%= root_path%>"><i class="icon-home"></i>Home</a></li>
+                    <li class="first"><a class="active" href="<%=new_contact_path%>"><i class="icon-home"></i>Contact</a></li>
+                    
+                  </ul>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+                <div class="container">
+                  <div class="row">
+                    <div class="span12">
+                      <div class="toprow-1">
+                        <a class="swipe-control" href="index.htm#"><i class="icon-reorder"></i></a>
+                        <div class="top-search">
+                          <i class="icon-search"></i>
+                        </div>
                       </div>
                     </div>
-                    <div class="buttons_top">
-                      <div id="currency" class="header-button">
-                        <div>
-                          <div class="heading-1"><i class="icon-money"></i>Currency<i class="icon-angle-down"></i></div>
-                          <div class="heading">
-                            $<i class="icon-angle-down"></i>
-                          </div>
-                        </div>
-                        <ul>
-                          <form action="index.php-route=module-currency.htm" method="post" enctype="multipart/form-data">
-                            <li><a title="Euro" onClick="$('input[name=\'currency_code\']').attr('value', 'EUR').submit(); $(this).parent().parent().submit();"><span>€</span></a></li>
-                            <li><a title="Pound Sterling" onClick="$('input[name=\'currency_code\']').attr('value', 'GBP').submit(); $(this).parent().parent().submit();"><span>£</span></a></li>
-                            <li><a title="US Dollar"><span class="act">$</span></a></li>
-                            <input type="hidden" name="currency_code" value="" />
-                            <input type="hidden" name="redirect" value="http://livedemo00.template-help.com/opencart_47588/index.php?route=product/category&amp;path=17" />
-                          </form>
-                        </ul>
+                  </div>
+                  <div class="row">
+                    <div class="span12 logo-container">
+                      <div id="logo"><a href="<%=plants_path%>"><img src="/logo.png" title="Aquarium Lib" alt="Aquarium Lib"/></a></div>
+                      <div class="cart-position">
                       </div>
-                      <div id="language" class="header-button">
-                        <div class="heading">en<i class="icon-angle-down"></i></div>
-                        <div class="heading1"><i class="icon-globe"></i>Language<i class="icon-angle-down"></i></div>
-                        <ul>
-                          <form action="index.php-route=module-language.htm" method="post" enctype="multipart/form-data">
-                            <li><span alt="English" title="English" onClick="$('input[name=\'language_code\']').attr('value', 'en').submit(); $(this).parent().parent().submit();" >en</span>
-                            <li><span alt="German" title="German" onClick="$('input[name=\'language_code\']').attr('value', 'de').submit(); $(this).parent().parent().submit();" >de</span>
-                            <li><span alt="Spanish" title="Spanish" onClick="$('input[name=\'language_code\']').attr('value', 'es').submit(); $(this).parent().parent().submit();" >es</span>
-                            <input type="hidden" name="language_code" value="" />
-                            <input type="hidden" name="redirect" value="http://livedemo00.template-help.com/opencart_47588/index.php?route=product/category&amp;path=17" />
+                      <div id="menu">
+                        <script type="text/javascript">
+                        $(document).ready(function(){
+                        $('.menu ul li').last().addClass('last');
+                        $('.menu ul li li').last().addClass('last');
+                        });
+                        </script>
+                        <!-- Menu header navigation -->
+                        <ul class="menu">
+                          <!-- Danh muc cay  -->
+                          <li class="cat_1">
+                            <a href="">Danh mục cây </a>
+                            <ul>
+                              <%@category.each do |a|%>
+                              <li><%= link_to a.name,  category_path(a.id) , class: 'screenshot1'%></li>
+                              <%end%>
+                            </ul>
                           </li>
-                        </form>
+                          <!-- Danh muc bai viet -->
+                          <li class="cat_2">
+                            <a href="<%=news_index_path%>">Cẩm Nang Thủy Sinh </a>
+                          </li>
+                          <!-- Trao doi buon ban -->
+                          <li class="cat_3">
+                            <a href="<%= advs_path%>">Góc Rao Vặt</a>
+                            <ul>
+                              <% if session[:role_account ] == nil%>
+                            <li><%= link_to 'Đăng bài viết',new_adv_path, class: 'screenshot1'%></li>
+                            <%end%>
+                             <li><%= link_to 'Xem bài viết',advs_path, class: 'screenshot1'%></li>
+                          </ul>
+                          </li>
+                          <!-- Shop -->
+                          <li class="cat_4">
+                            <a href="<%=shops_path%>">Shop Thủy Sinh</a>
+                          </li>
+                          <!-- Room chat -->
+                          <li class="cat_5">
+                            <a href="<%=chat_path%>">Chat Room</a>
+                          </li>
+                         
+                          <li class="cat_6">
+                            <div class="right" style="margin-top: -3%; margin-left: 17%;">
+                    <div id="search">
+                      <div class="inner">
+                        <%= form_tag searchs_path, method: :get do%>
+                        <div class="button-search">
+                           <i class="icon-search"></i><span>SEARCH</span></div>
+                          <input type="text" name="search" placeholder="" value="" style="max-width=5%;"/>
+                          <%end%>
+                      </div>
+                    </div>
+                    </div>
+                          </li>
+
+                        </ul>
+                        <div class="clear"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Menu responsive -->
+                  <div class="row">
+                    <div class="span12">
+                      <div id="menu-gadget">
+                        <div id="menu-icon">Danh Mục</div>
+                        <ul id="nav" class="sf-menu-phone">
+                          <li class="parent"><a href="">Danh mục cây</a>
+                          <ul>
+                            <%@category.each do |a|%>
+                            <li><%= link_to a.name, '', class: 'screenshot1'%></li>
+                            <%end%>
+                          </ul>
+                        </li>
+                        <li class="cat_2">
+                          <a href="<%=news_index_path%>">Cẩm Nang Thủy Sinh</a>
+                        </li>
+                        <!-- Trao doi buon ban -->
+                        <li class="cat_3">
+                          <a href="">Góc Rao Vặt</a>
+                        </li>
+                        <!-- Shop -->
+                        <li class="cat_4">
+                          <a href="">Shop Thủy Sinh</a>
+                        </li>
+                        <!-- Room chat -->
+                        <li class="cat_5">
+                          <a href="<%=chat_path%>">Chat Room</a>
+                        </li>
+                        <li class="cat_6">
+                          <div id="search">
+                      <div class="inner">
+                        <%= form_tag searchs_path, method: :get do%>
+                        <div class="button-search">
+                          <i class="icon-search"></i><span>SEARCH</span></div>
+                          <input type="text" name="search" placeholder="" value=""/>
+                          <%end%>
+                      </div>
+                    </div>
+                        </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="toprow">
-                  <ul class="links">
-                    <li class="first"><a class="" href="index.php-route=common-home.htm"><i class="icon-home"></i>Home</a></li>
-                    <li><a class="" href="index.php-route=account-wishlist.htm" id="wishlist-total"><i class="icon-star"></i>Wish List (0)</a></li>
-                    <li><a class="" href="index.php-route=account-account.htm"><i class="icon-user"></i>My Account</a></li>
-                    <li><a class="" href="index.php-route=checkout-cart.htm"><i class="icon-shopping-cart"></i>Shopping Cart</a></li>
-                    <li><a class="" href="index.php-route=checkout-checkout.htm"><i class="icon-check"></i>Checkout</a></li>
-                    <li class="login_h"><a href="index.php-route=account-login.htm"><i class="icon-lock"></i>Log In</a></li> <li><a href="index.php-route=account-register.htm"><i class="icon-file-alt"></i>Create an account</a></li>
-                  </ul>
-                  <div class="clear"></div>
-                </div>
+                <!-- end menu responsive -->
+              </div></div></div></div>
+            </header>
+            <section>
+              <div id="container">
+                <%= yield%>
               </div>
+              <div class="clear"></div>
+            </section>
+            <footer>
               <div class="container">
                 <div class="row">
                   <div class="span12">
-                    <div class="toprow-1">
-                      <a class="swipe-control" href="index.htm#"><i class="icon-reorder"></i></a>
-                      <div class="top-search">
-                        <i class="icon-search"></i>
+                    <div id="powered">
+                      <div>
+                        <span class="pow">
+                          Copyright ©2015, Tran Thanh Tu - AsianTech Company
+                        </span>
                       </div>
+                      <p id="back-top"> <a href="index.htm#top"><span></span></a> </p>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="span12 logo-container">
-                    <div id="logo"><a href="index.php-route=common-home.htm"><img src="image/data/logo.png" title="Flowers Store" alt="Flowers Store" /></a></div>
-                    <div id="menu">
-                      <script type="text/javascript">
-                        $(document).ready(function(){
-                          $('.menu ul li').last().addClass('last');
-                          $('.menu ul li li').last().addClass('last');
-                        });
-                      </script>
-                      <ul  class="menu">
-                        <li class="cat_1">
-                          <a href="index.php-route=product-category-amp-path=57.htm">Congratulation</a>
-                        </li>
-                        <li class="cat_2">
-                          <a href="index.php-route=product-category-amp-path=20.htm">Corporate</a>
-                          <ul>                                                                                                <li>
-                            <a class="screenshot1"  href="index.php-route=product-category-amp-path=20_77.htm">Lorem ipsum dolor</a>
-                          </li>
-                          <li>
-                            <a class="screenshot1"  href="index.php-route=product-category-amp-path=20_24.htm">Sit aconsectetur</a>
-                          </li>
-                          <li>
-                            <a class="screenshot1"  href="index.php-route=product-category-amp-path=20_88.htm">Ut eros purus</a>
-                            <ul>
-                              <li>
-                                <a href="index.php-route=product-category-amp-path=20_88_91.htm">Morbi eu massa blanit</a>
-                              </li>
-                              <li>
-                                <a href="index.php-route=product-category-amp-path=20_88_92.htm">Fusce et mauris sit</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a class="screenshot1"  href="index.php-route=product-category-amp-path=20_89.htm">Pellentesque malesuada</a>
-                          </li>
-                          <li>
-                            <a class="screenshot1"  href="index.php-route=product-category-amp-path=20_90.htm">Nunc et orci et libero</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="active cat_3">
-                        <a href="index.php-route=product-category-amp-path=17.htm">Family  flowers</a>
-                      </li>
-                      <li class="cat_4">
-                        <a href="index.php-route=product-category-amp-path=86.htm">Funeral</a>
-                      </li>
-                      <li class="cat_5">
-                        <a href="index.php-route=product-category-amp-path=85.htm">Get  well</a>
-                      </li>
-                      <li class="cat_6">
-                        <a href="index.php-route=product-category-amp-path=84.htm">Mixed </a>
-                      </li>
-                    </ul>
-                    <div class="clear"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="span12">
-                  <div id="menu-gadget">
-                    <div id="menu-icon">Categories</div>
-                    <ul id="nav" class="sf-menu-phone">
-                      <li ><a href="index.php-route=product-category-amp-path=57.htm">Congratulation</a>
-                    </li>
-                    <li class="parent"><a href="index.php-route=product-category-amp-path=20.htm">Corporate</a>
-                    <ul>
-                      <li >
-                        <a href="index.php-route=product-category-amp-path=20_77.htm">Lorem ipsum dolor</a>
-                      </li>
-                      <li >
-                        <a href="index.php-route=product-category-amp-path=20_24.htm">Sit aconsectetur</a>
-                      </li>
-                      <li class="parent">
-                        <a href="index.php-route=product-category-amp-path=20_88.htm">Ut eros purus</a>
-                        <ul>
-                          <li>
-                            <a href="index.php-route=product-category-amp-path=20_88_91.htm">Morbi eu massa blanit</a>
-                          </li>
-                          <li>
-                            <a href="index.php-route=product-category-amp-path=20_88_92.htm">Fusce et mauris sit</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li >
-                        <a href="index.php-route=product-category-amp-path=20_89.htm">Pellentesque malesuada</a>
-                      </li>
-                      <li >
-                        <a href="index.php-route=product-category-amp-path=20_90.htm">Nunc et orci et libero</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li ><a href="index.php-route=product-category-amp-path=17.htm">Family  flowers</a>
-                </li>
-                <li ><a href="index.php-route=product-category-amp-path=86.htm">Funeral</a>
-              </li>
-              <li ><a href="index.php-route=product-category-amp-path=85.htm">Get  well</a>
-            </li>
-            <li ><a href="index.php-route=product-category-amp-path=84.htm">Mixed </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div></div></div></div>
-</header>
-<section>
-<div id="container">
-  <%= yield%>
-</div>
-
-<div class="clear"></div>
-</section>
-<footer>
-<div class="container">
-<div class="row">
-  <div class="span12">
-    <div id="powered">
-      <div>
-        <span class="pow">
-          Powered By <a href="javascript:if(confirm('http://www.opencart.com\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='http://www.opencart.com'">OpenCart</a> Flowers Store <span>&copy; 2015</span><!-- [[%FOOTER_LINK]] -->
-        </span>
-        <ul class="social">
-          <li><a href="javascript:if(confirm('http://facebook.com\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='http://facebook.com'" class="tooltip-2" title="Facebook"><i class=" icon-facebook"></i></a></li>
-          <li><a href="javascript:if(confirm('http://twitter.com\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='http://twitter.com'" class="tooltip-2" title="Twitter"><i class=" icon-twitter"></i></a></li>
-          <li><a href="index.htm#" class="tooltip-2" title="RSS"><i class=" icon-rss"></i></a></li>
-          <li><a href="javascript:if(confirm('http://youtube.com\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='http://youtube.com'" class="tooltip-2" title="You Tube"><i class=" icon-youtube"></i></a></li>
-          <li><a href="javascript:if(confirm('http://accounts.google.com\n\nThis file was not retrieved because it was filtered out by your project settings.\n\nWould you like to open it from the server?'))window.location='http://accounts.google.com'" class="tooltip-2" title="Google+"><i class="icon-google-plus"></i></a></li>
-        </ul>
-      </div>
-      <p id="back-top"> <a href="index.htm#top"><span></span></a> </p>
-    </div>
-  </div>
-</div></div>
-</footer>
-<script type="text/javascript"  src="/assets/catalog/view/theme/theme324/js/livesearch.js"></script>
-</div>
-</div>
-</div>
-<script type="text/javascript">/* CloudFlare analytics upgrade */
-</script>
-<script type="text/javascript">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script");e.type="text/javascript/index.htm";e.src=(("http:"===document.location.protocol)?"http:":"https:")+"//"+"js-agent.newrelic.com/nr-100.js";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-1.newrelic.com","72d7dcce33","1388850","ZV1TZ0FTVkFVWkwKXlwXZEFaHRIdXVdcBkkcSFlD",0,434,new Date().getTime(),"","","","",""]);</script></body></html>
+                </div></div>
+              </footer>
+              <script type="text/javascript"  src="/assets/catalog/view/theme/theme324/js/livesearch.js"></script>
+            </div>
+          </div>
+        </div>
+        <script type='text/javascript'>
+        $(document).ready(function(){
+        $(window).scroll(function() {
+        if ($(window).scrollTop() > 169) {
+        $(".aside").css("position", "fixed");
+        $(".aside").css("top", "10px");
+        }
+        else {
+        $(".aside").css("position", "static");
+        }
+        });
+        });
+        </script>
+        <script type="text/javascript">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script");e.type="text/javascript/index.htm";e.src=(("http:"===document.location.protocol)?"http:":"https:")+"//"+"js-agent.newrelic.com/nr-100.js";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-1.newrelic.com","72d7dcce33","1388850","ZV1TZ0FTVkFVWkwKXlwXZEFaHRIdXVdcBkkcSFlD",0,434,new Date().getTime(),"","","","",""]);</script></body></html>

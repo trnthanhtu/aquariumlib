@@ -10,6 +10,7 @@ class DeviseCreateAccounts < ActiveRecord::Migration
       t.string  :image
       t.string  :detail
       t.string  :address
+      
       t.timestamps
 
     end

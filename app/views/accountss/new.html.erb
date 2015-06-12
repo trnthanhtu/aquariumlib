@@ -1,0 +1,122 @@
+<div class="container">
+<h1>Register Account</h1>
+<center>
+<div class="row">
+<div class="span2"></div>
+<div class="span8">
+<div class="box-container">
+	<%=form_for :user_account, :html => {:class => 'form-horizontal', :id => "register"} do |f|%>
+		<h2>THÔNG TIN CÁ NHÂN</h2>
+		<div class="content">
+			<table class="form">
+				<tbody><tr>
+					<td>
+						<div class="control-group">
+							<label class="control-label" for="firstname"><span class="required">*</span> Họ tên:</label>
+							<div class="controls">
+								<%=f.text_field :name, class: 'q1 span3', :required => true%>
+								<%= @user_account.errors[:name][0] === nil ?  '' : '&#8226;
+'.html_safe + @user_account.errors[:name][0] %>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="control-group">
+							<label class="control-label" for="lastname"><span class="required"></span> Địa chỉ:</label>
+							<div class="controls">
+								<%=f.text_field :address, class: 'q1 span3' , :required => true%>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="control-group">
+							<label class="control-label" for="email"><span class="required"></span> Ngày sinh:</label>
+							<div class="controls">
+								<%=f.date_field :birthday, class: 'q1', placeholder: 'yyyy/mm/dd'%>
+
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="control-group">
+							<label class="control-label" for="telephone"><span class="required">*</span> Số điện thoại:</label>
+							<div class="controls">
+								<%=f.text_field :phone_number, class: 'q1'%>
+								<%= @user_account.errors[:phone_number][0] === nil ?  '' : '&#8226;
+'.html_safe + @user_account.errors[:phone_number][0] %>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+	
+<h2>ĐĂNG KÍ TÀI KHOẢN</h2>
+<div class="content">
+	<table class="form">
+		<tbody>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label" for="password"><span class="required">*</span> Tên tài khoản:</label>
+					<div class="controls">
+						<%=f.text_field :usename, class: 'q1 ', :required => true%>
+						<%= @user_account.errors[:usename][0] === nil ?  '' : '&#8226;
+'.html_safe + @user_account.errors[:usename][0] %>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label" for="password"><span class="required">*</span> Mật khẩu:</label>
+					<div class="controls">
+						<%=f.password_field :password, class: 'q1 ', :required => true%>
+						<%= @user_account.errors[:password][0] === nil ?  '' : '&#8226;
+'.html_safe + @user_account.errors[:password][0] %>
+
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label" for="confirm"><span class="required">*</span> Xác nhận Mật khẩu:</label>
+					<div class="controls">
+						<%=password_field_tag :password_confirm, '', class: 'q1', :required => true%>
+						<br/><%= flash[:error]%>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="control-group">
+					<label class="control-label" for="confirm"><span class="required"></span> Hình ảnh đại diện:</label>
+					<div class="controls">
+						<%=f.file_field :image, class: 'q1'%>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<div class="buttons">
+	<div class="right">
+			<a onclick="$('#register').submit();" class="button"><span>Đăng kí</span></a>
+		</div>
+	</div>
+<%end%>
+</div>
+</div>
+</div>
+</center>
+</div>

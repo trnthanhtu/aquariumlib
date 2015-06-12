@@ -1006,16 +1006,16 @@ aside .box-product .price {
 	}
 
 /*********************************************************************leftinfo***************************************************************************************************/
-aside .info li, .afine li, .acount li {
+aside .info li, .afine li, .acount li , .box-content2 .info li {
 	position: relative;
 	clear:both;
 	padding:13px 10px 11px 19px;
 	border-top:1px solid #DBDBDB;
 }
-aside .info li:first-child, .afine li:first-child, .acount li:first-child  {
+aside .info li:first-child, .afine li:first-child, .acount li:first-child  , .box-content2 li:first-child{
 	border-top:none;
 }
-aside .info li a, .afine li a, .acount li a {
+aside .info li a, .afine li a, .acount li a , .box-content2 .info li a{
 	line-height:14px;
 	font-size:12px;
 	color:#6d6d6d;
@@ -1026,14 +1026,14 @@ aside .info li a, .afine li a, .acount li a {
 	padding-top:5px;
 	padding-bottom:5px;
 	}
-aside .info li a + a i, .afine li a + a i, .acount li a + a i{
+aside .info li a + a i, .afine li a + a i, .acount li a + a i, .box-content2 .info li a + a i{
 	display:none;
 	}
-aside .info li a + a, .afine li a + a, .acount li a + a {
+aside .info li a + a, .afine li a + a, .acount li a + a, .box-content2 .info li a + a {
 	padding-left:0;
 	background:none;
 }
-aside .info li a:hover, .afine li a:hover, .acount li a:hover {
+aside .info li a:hover, .box-content2 .info li a:hover, .afine li a:hover, .acount li a:hover {
 	color:#fb838d;
 }
 /********************************************************************************************************************************************************************************/
@@ -1186,7 +1186,7 @@ a.button , a.button-prod{
 	display: inline-block;
 	text-decoration: none;
 	cursor: pointer;
-	background: #fb838d;
+	background: #848CEA;
 	text-align:center;
 	margin-bottom:6px;
 	}
@@ -1387,10 +1387,10 @@ a.button-i i:hover {
 .common-home .box.featured {
 	margin-bottom:3px;
 }
-aside .box {
+aside .box , .list .box{
     margin-bottom: 36px;
 }
-aside .box ul li{
+aside .box ul li, .list .box ul li{
 	background-color:#fff;
 }
 aside .box.featured .box-content, aside .box.specials .box-content, aside .box.bestsellers .box-content, aside .box.new-products .box-content {
@@ -1402,7 +1402,7 @@ aside .box.featured .box-content, aside .box.specials .box-content, aside .box.b
 	font-size:18px;
 	line-height:22px;
 	padding:8px 15px 8px 27px;
-	background-color:#fb838d;
+	background-color:#83A2FB;
 	color:#fff;
 	margin-bottom:33px;
 	text-transform:none;
@@ -1424,7 +1424,7 @@ aside .box .box-heading{
 	padding:6px 10px 9px 20px;
 	background-color:#ACC955;
 	}
-aside .box .box-content{
+aside .box .box-content, .box-content2{
 	border-right:1px solid #d2d2cb;
 	border-right:1px solid rgba(0,0,0,.1);
 	border-bottom:1px solid #d2d2cb;
@@ -1432,7 +1432,7 @@ aside .box .box-content{
 	border-left:1px solid #d2d2cb;
 	border-left:1px solid rgba(0,0,0,.1);
 	}
-aside .box#compare .box-content, aside .box.box-filter .box-content{
+aside .box#compare .box-content, aside .box.box-filter .box-content, .box-content2{
 	padding:20px 10px;
 	background-color:#fff;
 	}
@@ -1443,17 +1443,17 @@ aside .box#compare .box-content, aside .box.box-filter .box-content{
 	color:#FB838D;
 }
 /* box products */
-.box .box-content .box-product ul li.first-in-line {
+.box .box-content .box-product ul li.first-in-line , .box-content2 .box-product ul li.first-in-line{
 	clear:left;
 	}
-.box .box-content .box-product ul li, .product-grid ul li {
+.box .box-content .box-product ul li, .product-grid ul li, .box-content2 .box-product ul li {
 	margin-bottom:33px;		
 }
-aside .box .box-content .box-product ul  {
+aside .box .box-content .box-product ul, .box-content2 .box-product ul  {
 	width:auto;
 	margin:0;
 	}
-aside .box .box-content .box-product ul>li {
+aside .box .box-content .box-product ul>li, .box-content2 .box-product ul>li {
 	width:100%;
 	margin:0;
 	max-width:270px
@@ -1704,7 +1704,7 @@ li.parent> i.icon-angle-down:hover, .sf-menu-phone li.parent> i.icon-angle-down:
 	line-height:11px;
 	vertical-align:middle;
 	}
-.box-category > ul > li li  i.icon-angle-right, aside .info li a i, .afine li a i, .acount li a i, .sitemap-info ul li a i , .manufacturer-list ul li a i, .content ul li a i{
+.box-category > ul > li li  i.icon-angle-right, aside .info li a i, .box-content2 .info li a i, .afine li a i, .acount li a i, .sitemap-info ul li a i , .manufacturer-list ul li a i, .content ul li a i{
 	font-size:12px;
 	line-height:19px;
 	color:#FB838D;
@@ -3587,7 +3587,7 @@ aside #compare .name a:hover{
 	padding:0;
 	margin-bottom:10px;	
 }
-aside .box  .box-product ul li  .inner .name{
+aside .box  .box-product ul li  .inner .name {
 	padding-bottom:11px;
 	border-bottom:1px solid #dbdbdb;
 	margin-bottom:16px;
@@ -3649,7 +3649,7 @@ aside .box .box-product ul li .inner{
 	font-size:13px;
 	}
 .table th, .table td {
-	padding:20px;
+	/*padding:20px;*/
 	border-color:#d2d2cb;
 	border-color:rgba(0,0,0,.1);
 	-moz-box-sizing: border-box; 
@@ -3785,3 +3785,70 @@ html[lang="es"] #cart .heading span.link_a  {
 html[lang="es"]  a.button span {
     white-space: normal;
 	}
+.aside{
+	position:fixed; 
+}
+.title_plant_item, .name_plant_item, .name_plant_item_low{
+	font-size: 15px;	
+}
+.title_plant_item{
+	color: #9392A2;
+}
+.name_plant_item{
+	color: #7B6262;
+	font-weight: bold;
+}
+.name_plant_item_low{
+	color: #7B6262;
+}
+.name-upcase{
+	text-transform: uppercase;
+}
+section {
+	min-height:380px;
+}
+
+.advs_style{
+	font-style: italic;
+}
+.message-date{
+	font-style: italic;
+	font-size: 11px;
+}
+.message_style{
+	font-weight: bold;
+	color:#C0409A!important;
+	text-decoration: underline;
+}
+.p-message{
+	width: 96%;
+}
+.label-form{
+	text-transform: uppercase;
+	color: #00F;
+}
+.link_advs{
+	color:#1188B7;
+	font-size: 14px;
+	font-style: italic;
+}
+.link_view_account{
+	color:#C0409A!important;
+}
+.link_shop {
+	color:#203C0F;
+}
+.image_view{
+	width:229px;
+	height: 196px;
+}
+.image_post_index{
+	width: 300px;
+	height: 200px
+}
+.image3{
+	text-align: left!important;
+}
+.bottom-border{
+	padding: 19px 22px 0px 20px!important;
+}

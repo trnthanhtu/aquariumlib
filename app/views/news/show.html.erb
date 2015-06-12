@@ -1,0 +1,104 @@
+<section>
+
+<div id="container">
+
+<div class="container">
+<div id="notification"></div>
+<div class="row">
+<div class="span12">
+<div class="row">
+<div class="span12  " id="content">  <div class="breadcrumb">
+		<a href="<%=plants_path%>">Home</a>
+		 &raquo; <a href="<%=news_index_path%>">CẨM NANG THỦY SINH</a>
+		 &raquo; <a href="<%=news_index_path%>"><%= @list_post_item.title %></a>
+	  </div>
+  <h1 class="style-1"><%= @list_post_item.title %></h1>
+    
+      
+  <div class="product-grid">
+	<ul>
+
+<li class="span12 ">
+	<div class="image"><a href=""><%=image_tag @list_post_item.image, id: 'img_40', style: 'width:430px; height:200px' %></a></div>
+	<div class="description">
+	<%="<span style= 'color:#002AE1'>Ngày đăng: </span>".html_safe + @list_post_item.created_at.strftime("%Y/%m/%d")%>
+
+	<br/>
+	<span style= "color:#002AE1">&nbsp;</span><%= @list_post_item.description.html_safe%>
+	</div>
+</li>
+
+			 </ul>
+  </div>
+  
+      </div>
+	</div>
+</div>
+
+<script type="text/javascript"><!--
+function display(view) {
+	
+		$('.product-list').attr('class', 'product-grid');
+		$('.product-grid ul').addClass('row');
+		$('.product-grid ul li').addClass('span12');
+		$('.product-grid ul li').each(function(index, element) {
+			html = '';
+					
+			var image = $(element).find('.image').html();
+			
+			if (image != null) {
+				html += '<div class="image">' + image + '</div>';
+			}
+			html += '<div class="left">';
+			
+
+			(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+				$(window).load(function(){
+				if($(".subcatname.htm").length){
+				$(".subcatname.htm").equalHeights()}
+			});		
+		
+			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
+
+			html += '<div class="clear">' + $(element).find('.clear').html() + '</div>';
+			var rating = $(element).find('.rating').html();
+			
+					
+			html += '</div>';
+			$(element).html(html);
+		});	
+					
+				
+		$.totalStorage('display', 'grid');
+
+	if ($('body').width() > 940) {
+	// tooltip demo
+		$('.tooltip-toggle').tooltip({
+		selector: "a[data-toggle=tooltip]/index.htm"
+		})
+		$('.tooltip-1.htm').tooltip({
+			placement:'bottom'
+		})
+		$('.tooltip-2.htm').tooltip({
+			placement:'top'
+		})
+		}
+	
+}
+
+view = $.totalStorage('display');
+
+if (view) {
+	display('grid');
+} else {
+	display('grid');
+}
+//--></script> 
+
+
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</section>

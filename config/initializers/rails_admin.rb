@@ -12,7 +12,7 @@ RailsAdmin.config do |config|
   # config.current_user_method(&:current_user)
 
   ## == Cancan ==
-   config.authorize_with :cancan
+  config.authorize_with :cancan
 
   ## == PaperTrail ==
   # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
@@ -21,43 +21,14 @@ RailsAdmin.config do |config|
 
  config.actions do
     dashboard                      # mandatory
-    index do                        # mandatory
-      controller do
-        proc do
-          @objects = @abstract_model.where('isnull(delete_flag) or delete_flag = 0').order('created_at desc')
-        end
-      end
-    end
+    index 
     new
     # export
     # bulk_delete
     show
     edit
     # show_in_app
-    delete do
-      controller do
-        proc do
-          if request.delete? # delete
-            @object.delete_flag =1
-
-            @object.set_attributes(params[@abstract_model.param_key])
-            @authorization_adapter && @authorization_adapter.attributes_for(:destroy, @abstract_model).each do |name, value|
-              @object.send("#{name}=", value)
-            end
-
-            if @object.save
-              @auditing_adapter && @auditing_adapter.create_object(@object, @abstract_model, _current_user)
-              respond_to do |format|
-                format.html { redirect_to_on_success }
-                format.js   { render json: {id: @object.id.to_s, label: @model_config.with(object: @object).object_label} }
-              end
-            else
-              handle_save_error
-            end
-          end
-        end
-      end
-    end
+    delete 
   # config action end
   # config field to show in action
 
@@ -68,73 +39,55 @@ RailsAdmin.config do |config|
       exclude_fields :delete_flag
       field :description, :ck_editor
     end
+    edit do
+      include_all_fields
+      exclude_fields :delete_flag, :plant_images
+      field :description, :ck_editor
+    end
     list do
       include_all_fields
-      exclude_fields :delete_flag, :updated_at , :id
+      exclude_fields  :updated_at , :categories
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+      end
+    end
+    show do
+      include_all_fields
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+     end
     end
   end
 
   config.model Account do
-    # field :roles do
-    #   inverse_of :roles
-    # end
     create do
       include_all_fields
-      exclude_fields :delete_flag, :roles
-      # field :description, :ck_editor
+      exclude_fields  :roles, :post_sells, :posts
     end
     edit do
        include_all_fields
-       exclude_fields :delete_flag
+       exclude_fields  :posts, :post_sells
        field :admin do
         visible do
             bindings[:view]._current_user.roles.include?(:member)
-          # current_user.roles.include?(:super_admin) # metacode
         end
       end
 
     end
     list do
       include_all_fields
-      exclude_fields :delete_flag, :updated_at, :admin, :id
-    end
-  end
-
-  # config for technical
-    config.model Plant do
-    edit do
-      include_all_fields
-      exclude_fields :delete_flag
-    end
-    list do
-      include_all_fields
-      exclude_fields :delete_flag, :updated_at, :id
-    end
-  end
-
-  #config for rating
-  config.model Rating do
-    list do
-      include_all_fields
-      exclude_fields :delete_flag, :id
-    end
-
-    edit do
-      include_all_fields
-      exclude_fields :delete_flag
-      field :point, :enum do
-        enum_method do
-          :my_rating_enum_instance_method
-        end
-
-        enum do
-          [1,2,3,4,5]
-        end
+      field :image do
+        thumb_method :thumbnail
       end
+      exclude_fields  :updated_at, :admin, :id, :created_at,:post_sells
     end
   end
 
-  # config for Contact
+    # config for Contact
   config.model Contact do
     edit do
       include_all_fields
@@ -142,7 +95,7 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at, :id
+       exclude_fields  :created_at, :updated_at, :id
     end
   end
 
@@ -153,32 +106,131 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at, :accounts, :id
+       exclude_fields  :created_at, :updated_at, :accounts, :id
     end
   end
 
+  # Config for Category
+  config.model Category do
+    create do
+      include_all_fields
+      exclude_fields  :plants
+      field :description, :ck_editor
+    end
+    edit do
+      include_all_fields
+      exclude_fields  :plants
+      field :description, :ck_editor
+    end
+    list do
+      include_all_fields
+      exclude_fields  :created_at, :updated_at , :plants
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+     end
+    end
+    show do
+      include_all_fields
+
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+     end
+    end
+  end
 
   # Config for Post
   config.model Post do
+    create do
+      include_all_fields
+      exclude_fields :ratings
+      field :description, :ck_editor
+    end
     edit do
       include_all_fields
-      exclude_fields :delete_flag
+      exclude_fields :ratings
+      field :description, :ck_editor
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at, :id
+      exclude_fields  :created_at, :updated_at, :description
+      field :image do
+        thumb_method :thumbnail
+      end
+    end
+    show do
+      include_all_fields
+
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+     end
     end
   end
 
+  # Config for Post_Sells
+  config.model PostSell do
+    list do
+      include_all_fields
+      exclude_fields  :created_at, :updated_at
+      field :image do
+        thumb_method :thumbnail
+      end
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+      end
+    end
+    show do
+      include_all_fields
+
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+     end
+    end
+  end
   # Config for Shop
   config.model Shop do
     edit do
-      include_all_fields
       exclude_fields :delete_flag
+      field :township, :enum do
+        enum_method do
+          :my_shop_enum_instance_method
+        end
+
+        enum do
+          ["Quận Cẩm Lệ" ,"Quận Sơn Trà" ,"Quận Ngũ Hành Sơn " ,"Quận Hải Châu" ,"Quận Thanh Khê" ,"Quận Liên Chiểu"]
+        end
+      end
+      include_all_fields
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at, :id
+      exclude_fields  :created_at, :updated_at, :id
+      field :image do
+        thumb_method :thumbnail
+      end
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+     end
+    end
+    show do
+      include_all_fields
+
+      field :description do
+        pretty_value do
+          value.html_safe
+        end
+     end
     end
   end
 
@@ -190,7 +242,10 @@ RailsAdmin.config do |config|
     end
     list do
       include_all_fields
-       exclude_fields :delete_flag, :created_at, :updated_at, :id
+      exclude_fields  :created_at, :updated_at, :id, :description
+      field :image do
+        thumb_method :thumbnail
+      end
     end
   end
 end

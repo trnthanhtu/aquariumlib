@@ -1,0 +1,100 @@
+<section>
+
+<div id="container">
+
+<div class="container">
+<div id="notification"></div>
+<div class="row">
+<div class="span12">
+	<div class="row">
+<div class="span9  " id="content">  <div class="breadcrumb">
+		<a href="<%=plants_path%>">Home</a>
+		 &raquo; <a href="<%=advs_path%>"><%=@title_page%></a>
+		 &raquo; <a href="<%=advs_path%>">XEM BÀI VIẾT</a>
+	  </div>
+  <h1 class="style-1"><%=sort_type%> </h1>
+<div class="category-info">
+	
+		<%@list_post_sell.each do |lps|%>
+		<div class="row">
+		<div class="image span2"><a href="">
+			<% if lps.image.url != nil%>
+			<img src="<%= lps.image%>" alt="">
+			<% else %>
+			<img src="/no_image.jpg" alt="">
+			<%end%>
+		</a></div>
+		<div class="left span6">
+			<div class="name"><a href=""><%=lps.title%></a></div>
+			<div class="description">
+				<span style="color:#002AE1">Ngày đăng:&nbsp;</span><%=lps.created_at.strftime('%d-%m-%Y')%>
+				<br>
+				<span style="color:#002AE1">Người đăng:&nbsp;</span><%=lps.user_account.name%>
+				<br>
+				
+			</div>
+			<br/>
+			<%if session[:account_id] == lps.user_account_id%>
+				<div class="button details" style="float:right"><a href="<%=edit_adv_path(lps.id)%>" class="button details" title="Xem"><span>Chỉnh sửa</span></a>	
+				<%= link_to '<span>Xóa</span>'.html_safe, adv_destroy_path(lps.id), class: 'button details' ,  data: { confirm: "Xác nhận Xóa thông tin này?"}%>
+				
+				</div>
+
+			<%elsif session[:role_account]%>
+				<div class="button details" style="float:right"><a href="<%=edit_adv_path(lps.id)%>" class="button details" title="Xem"><span>Chỉnh sửa</span></a>	</div>
+				<div class="button details" style="float:right">
+				<%= link_to '<span>Xóa</span>'.html_safe, adv_destroy_path(lps.id), class: 'button details' ,  data: { confirm: "Xác nhận Xóa thông tin này?"}%>
+				</div>
+			<%end%>
+			<div class="button details" style="float:right"><a href="<%=adv_path(lps.id)%>" class="button details" title="Xem"><span>Xem</span></a>
+		</div>
+		<br/>
+		</div>
+		</div>
+		<hr/>
+		<%end%>
+</div>
+</div>
+  <aside class="span3 aside" id="column-left" >
+    <div class="clear"></div>
+<div class="box man">
+  <div class="box-heading"><span><%=@title_page%></span></div>
+  <div class="box-content">
+        <ul class="info">
+        	<% @list_type.each do |lt|%>
+        	  <li><%= link_to lt, url_for(:type=> lt) %></li>
+        	<%end%>        
+            </ul>
+        <div class="clear"></div>
+  </div>
+</div>    <script type="text/javascript">
+		(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+	$(window).load(function(){
+		if($(".maxheight.htm").length){
+		$(".maxheight.htm").equalHeights()}
+	})
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+$(function(){
+$('.new-products  li ').last().addClass('last');
+});
+}); 
+</script>
+    <script type="text/javascript">
+		(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+	$(window).load(function(){
+		if($(".maxheight-best.htm").length){
+		$(".maxheight-best.htm").equalHeights()}
+	})
+</script>
+  </aside>
+	</div>
+</div>
+
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</section>

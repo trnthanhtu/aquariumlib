@@ -1,6 +1,5 @@
 class Post < ActiveRecord::Base
-  belongs_to :plant
-  has_many   :ratings
+  belongs_to :account
 
   mount_uploader :image, ImageUploader
 end

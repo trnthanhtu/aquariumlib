@@ -6,9 +6,8 @@ class CreatePosts < ActiveRecord::Migration
       t.string    :image
       t.text      :description
       t.timestamps null: false
-      t.boolean :delete_flag
-      t.references :plant, index: true
-      t.references :type_post, index: true
+      t.boolean   :delete_flag
+      t.references :account, index: true
     end
   end
 end

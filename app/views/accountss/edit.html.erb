@@ -1,0 +1,165 @@
+<div class="container">
+  <div id="notification"></div>
+  <div class="row">
+    <div class="span12">
+      <div class="row">
+        <div class="span9  " id="content">  <div class="breadcrumb">
+          <a href="">Home</a>
+          &raquo; <a href="<%=accountss_path(@user_account_login)%>">THÔNG TIN CÁ NHÂN</a>
+          &raquo; <a href="">THAY ĐỔI THÔNG TIN</a>
+        </div>
+        <div class="product-info">
+<div class="row">
+            
+<div class="span9">
+  <div class="tabs">
+    <div class="tab-heading" id="s1">THÔNG TIN CÁ NHÂN</div>
+    <div class="description" style="padding-bottom:0px">
+      <div class="product-section">
+          <%=form_for :user_account_login, :html => {:class => 'form-horizontal', :id => "register"} do |f|%>
+    <h2>THAY ĐỔI THÔNG TIN CÁ NHÂN </h2>
+    <hr/>
+    <div class="content">
+      <table class="form">
+        <tbody><tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label" for="firstname"><span class="required">*</span> Họ tên:</label>
+              <div class="controls">
+                <%=f.text_field :name, class: 'q1 span3', :required => true%>
+                <%= @user_account_login.errors[:name][0] === nil ?  '' : '&#8226;
+'.html_safe + @user_account_login.errors[:name][0] %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label" for="lastname"><span class="required"></span> Địa chỉ:</label>
+              <div class="controls">
+                <%=f.text_field :address, class: 'q1 span3' , :required => true%>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label" for="email"><span class="required"></span> Ngày sinh:</label>
+              <div class="controls">
+                <%=f.date_field :birthday, class: 'q1', placeholder: 'yyyy/mm/dd'%>
+
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label" for="telephone"><span class="required">*</span> Số điện thoại:</label>
+              <div class="controls">
+                <%=f.text_field :phone_number, class: 'q1'%>
+                <%= @user_account_login.errors[:phone_number][0] === nil ?  '' : '&#8226;
+'.html_safe + @user_account_login.errors[:phone_number][0] %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="confirm"><span class="required"></span> Hình ảnh đại diện:</label>
+          <div class="controls">
+            <%=f.file_field :image, class: 'q1'%>
+            <br/>
+            <%if @user_account_login.image%>
+            <%=image_tag @user_account_login.image , style: 'width: 200px; height:150px;'%>
+            <%end%>
+          </div>
+        </div>
+      </td>
+    </tr>
+      </tbody></table>
+    </div>
+<div class="content">
+
+  <h2 id='s2'>THAY ĐỔI THÔNG TIN TÀI KHOẢN</h2>
+  <hr/>
+  <table class="form">
+    <tbody>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="password"><span class="required">*</span> Mật khẩu cũ:</label>
+          <div class="controls">
+            <%=password_field_tag :password_old,'', class: 'q1 ' %>
+           <%=flash[:error_password_old]%>
+
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="password"><span class="required">*</span> Mật khẩu mới:</label>
+          <div class="controls">
+            <%=password_field_tag :password, '', class: 'q1'%>
+
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="confirm"><span class="required">*</span> Xác nhận Mật khẩu mới:</label>
+          <div class="controls">
+            <%=password_field_tag :password_confirm ,'', class: 'q1'%><%= flash[:error_password_confirm]%>
+               
+          </div>
+        </div>
+      </td>
+    </tr>
+    <%= @user_account_login.errors[:password][0] === nil ?  '' : '&#8226;
+'.html_safe + @user_account_login.errors[:password][0] %>
+
+  </tbody></table>
+
+</div>
+<div class="buttons">
+  <div class="right">
+      <a onclick="$('#register').submit();" class="button"><span>CẬP NHẬT</span></a>
+    </div>
+  </div>
+<%end%>
+           
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  
+      </div>
+
+    </div>
+
+
+    <!-- Left menu -->
+    <aside class="span3 aside" id="column-left">
+      <div class="box account">
+        <div class="box-heading">DANH MỤC</div>
+        <div class="box-content">
+          <ul class="acount list_product">
+            <li><a href="#s1">THÔNG TIN CÁ NHÂN</a></li>
+            <li><a href="#s2">THÔNG TIN TÀI KHOẢN</a></li>
+          </ul>
+        </div>
+       </div>
+      </aside>
+    </div>
+  </div>
+    <div class="clear"></div>
+</div>
+</div>

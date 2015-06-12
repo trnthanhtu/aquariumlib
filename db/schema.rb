@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416034804) do
+ActiveRecord::Schema.define(version: 20150519041202) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email",              limit: 255, default: "", null: false
     t.string   "encrypted_password", limit: 255, default: "", null: false
-    t.boolean  "delete_flag",        limit: 1
     t.boolean  "admin",              limit: 1
     t.string   "name",               limit: 255
     t.string   "image",              limit: 255
@@ -28,18 +27,16 @@ ActiveRecord::Schema.define(version: 20150416034804) do
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
 
-  create_table "accounts_roles", id: false, force: :cascade do |t|
-    t.integer  "role_id",     limit: 4
-    t.integer  "account_id",  limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.boolean  "delete_flag", limit: 1
+  create_table "accounts_roles", force: :cascade do |t|
+    t.integer  "role_id",    limit: 4
+    t.integer  "account_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
-    t.boolean  "delete_flag", limit: 1
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -48,81 +45,78 @@ ActiveRecord::Schema.define(version: 20150416034804) do
     t.string   "email",        limit: 255
     t.string   "name",         limit: 255
     t.integer  "phone_number", limit: 4
-    t.text     "detail",       limit: 65535
-    t.boolean  "delete_flag",  limit: 1
+    t.text     "description",  limit: 65535
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text     "detail",          limit: 65535
+    t.integer  "post_sell_id",    limit: 4
+    t.integer  "user_account_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "admin",           limit: 1
+  end
+
+  add_index "messages", ["post_sell_id"], name: "index_messages_on_post_sell_id", using: :btree
+  add_index "messages", ["user_account_id"], name: "index_messages_on_user_account_id", using: :btree
+
   create_table "plant_images", force: :cascade do |t|
     t.string   "description", limit: 255
     t.string   "name",        limit: 255
-    t.boolean  "delete_flag", limit: 1
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "plant_id",    limit: 4
+    t.string   "image",       limit: 255
   end
 
   add_index "plant_images", ["plant_id"], name: "index_plant_images_on_plant_id", using: :btree
 
   create_table "plants", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.string   "scientic_name",   limit: 255
-    t.string   "vietnamese_name", limit: 255
-    t.string   "address",         limit: 255
-    t.text     "description",     limit: 65535
-    t.boolean  "delete_flag",     limit: 1
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "category_id",     limit: 4
+    t.string   "name",          limit: 255
+    t.string   "scientic_name", limit: 255
+    t.string   "address",       limit: 255
+    t.text     "description",   limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "category_id",   limit: 4
+    t.string   "genus",         limit: 255
+    t.string   "familia",       limit: 255
+    t.integer  "technical_id",  limit: 4
   end
 
   add_index "plants", ["category_id"], name: "index_plants_on_category_id", using: :btree
+  add_index "plants", ["technical_id"], name: "index_plants_on_technical_id", using: :btree
 
   create_table "post_sells", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.string   "image",       limit: 255
-    t.string   "description", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.boolean  "delete_flag", limit: 1
-    t.integer  "account_id",  limit: 4
+    t.string   "title",           limit: 255
+    t.string   "image",           limit: 255
+    t.string   "description",     limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "type",            limit: 255
+    t.integer  "user_account_id", limit: 4
   end
 
-  add_index "post_sells", ["account_id"], name: "index_post_sells_on_account_id", using: :btree
+  add_index "post_sells", ["user_account_id"], name: "index_post_sells_on_user_account_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",        limit: 255
-    t.string   "detail",       limit: 255
-    t.string   "image",        limit: 255
-    t.text     "description",  limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "delete_flag",  limit: 1
-    t.integer  "plant_id",     limit: 4
-    t.integer  "type_post_id", limit: 4
-  end
-
-  add_index "posts", ["plant_id"], name: "index_posts_on_plant_id", using: :btree
-  add_index "posts", ["type_post_id"], name: "index_posts_on_type_post_id", using: :btree
-
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "point",       limit: 4
-    t.boolean  "delete_flag", limit: 1
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.integer  "post_id",     limit: 4
+    t.string   "title",       limit: 255
+    t.string   "detail",      limit: 255
+    t.string   "image",       limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "account_id",  limit: 4
   end
 
-  add_index "ratings", ["account_id"], name: "index_ratings_on_account_id", using: :btree
-  add_index "ratings", ["post_id"], name: "index_ratings_on_post_id", using: :btree
+  add_index "posts", ["account_id"], name: "index_posts_on_account_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.boolean  "delete_flag", limit: 1
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "shops", force: :cascade do |t|
@@ -133,27 +127,38 @@ ActiveRecord::Schema.define(version: 20150416034804) do
     t.integer  "phone_number", limit: 4
     t.string   "image",        limit: 255
     t.string   "website",      limit: 255
-    t.boolean  "delete_flag",  limit: 1
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "township",     limit: 255
   end
 
   create_table "technicals", force: :cascade do |t|
-    t.integer  "temperature",  limit: 4
-    t.integer  "light",        limit: 4
-    t.integer  "pH",           limit: 4
-    t.text     "fertilizer",   limit: 65535
-    t.string   "trophic",      limit: 255
-    t.text     "notice",       limit: 65535
-    t.integer  "level",        limit: 4
-    t.string   "size",         limit: 255
-    t.string   "address_grow", limit: 255
-    t.boolean  "delete_flag",  limit: 1
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "plant_id",     limit: 4
+    t.text     "temperature",    limit: 65535
+    t.text     "light",          limit: 65535
+    t.text     "pH",             limit: 65535
+    t.text     "fertilizer",     limit: 65535
+    t.string   "trophic",        limit: 255
+    t.text     "notice",         limit: 65535
+    t.text     "level",          limit: 65535
+    t.string   "size",           limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.text     "growth",         limit: 65535
+    t.text     "tree_structure", limit: 65535
   end
 
-  add_index "technicals", ["plant_id"], name: "index_technicals_on_plant_id", using: :btree
+  create_table "user_accounts", force: :cascade do |t|
+    t.string   "usename",      limit: 255, default: "", null: false
+    t.string   "password",     limit: 255, default: "", null: false
+    t.string   "name",         limit: 255
+    t.string   "image",        limit: 255
+    t.string   "address",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "phone_number", limit: 255
+    t.datetime "birthday"
+  end
+
+  add_index "user_accounts", ["usename"], name: "index_user_accounts_on_usename", unique: true, using: :btree
 
 end

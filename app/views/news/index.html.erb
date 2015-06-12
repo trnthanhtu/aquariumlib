@@ -1,0 +1,158 @@
+<section>
+
+<div id="container">
+
+<div class="container">
+<div id="notification"></div>
+<div class="row">
+<div class="span12">
+<div class="row">
+<div class="span12  " id="content">  <div class="breadcrumb">
+		<a href="<%=plants_path%>">Home</a>
+		 &raquo; <a href="<%=news_index_path%>">CẨM NANG THỦY SINH</a>
+	  </div>
+  <h1 class="style-1">DANH SÁCH BÀI VIẾT</h1>
+    
+      
+  <div class="product-grid">
+	<ul>
+<% @list_post.each do |pl|%>
+<li class="span6 ">
+	<div class="image"><a href=""><%=image_tag pl.image, id: 'img_40', style: 'width:229px; height:150px' %></a></div>
+	<div class="name"><%=link_to pl.title %></div>
+	<div class="description">
+	<span style= "color:#002AE1">Mô tả:&nbsp;</span><%= pl.detail%>
+		<br/>
+	<%="<span style= 'color:#002AE1'>Ngày đăng: </span>".html_safe + pl.created_at.strftime("%Y/%m/%d")%>
+	</div>
+
+		<div class="cart-button button details"><a href="<%=news_path(pl.id)%>" class="button details" title="Đọc tiếp"><!--<i class="icon-shopping-cart"></i>--><span>Đọc tiếp</span></a>
+
+	</div>
+	<div class="rating">
+	</div>
+</li>
+<%end%>
+			 </ul>
+  </div>
+  
+  <div class="pagination"><div class="links"> <%=paginate @list_post%></div></div>
+      </div>
+	</div>
+</div>
+
+<script type="text/javascript"><!--
+function display(view) {
+	if (view == 'list') {
+		$('.product-grid ').attr('class', 'product-list');
+		$('.product-list ul').removeClass('row');
+		$('.product-list ul li').removeClass('span3');
+		$('.product-list ul li').each(function(index, element) {
+			html = '';
+					html += '<div class="row">';
+			var image = $(element).find('.image').html();
+			
+			if (image != null) {
+				html += '<div class="image span2">' + image + '</div>';
+			}
+			html += '<div class="left span6">';
+				html += '<div class="name">' + $(element).find('.name').html() + '</div>';
+				html += '<div class="description">' + $(element).find('.description').html() + '</div>';
+
+				html += '<div class="button details" style="float:right">' + $(element).find('.details').html() + '</div>';
+				
+				html += '<div class="clear">' + $(element).find('.clear').html() + '</div>';
+
+				var rating = $(element).find('.rating').html();
+				if (rating != null) {
+					html += '<div class="rating">' + rating + '</div>';
+				}
+				html += '</div>';
+				html += '</div>';
+			
+
+						
+			$(element).html(html);
+		});		
+		
+		$('.display').html('<b>Display:</b> <div id="list_b"><i class="icon-list"></i></div> <a id="grid_a" onclick="display(\'grid\');"><i class="icon-th"></i></a>');
+		
+		$.totalStorage('display', 'list'); 
+	} else {
+		$('.product-list').attr('class', 'product-grid');
+		$('.product-grid ul').addClass('row');
+		$('.product-grid ul li').addClass('span6');
+		$('.product-grid ul li').each(function(index, element) {
+			html = '';
+					
+			var image = $(element).find('.image').html();
+			
+			if (image != null) {
+				html += '<div class="image">' + image + '</div>';
+			}
+			html += '<div class="left">';
+			
+
+			(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+				$(window).load(function(){
+				if($(".subcatname.htm").length){
+				$(".subcatname.htm").equalHeights()}
+			});
+			
+			html += '<div class="name maxheight-subcat">' + $(element).find('.name').html() + '</div>';	
+			
+			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
+						
+			html += '<div class="button details" style="float:right" >' + $(element).find('.details').html() + '</div>';
+			
+			html += '<div class="clear">' + $(element).find('.clear').html() + '</div>';
+			var rating = $(element).find('.rating').html();
+			
+			if (rating != null) {
+				html += '<div class="rating">' + rating + '</div>';
+			}
+			
+			html += '</div>';
+			$(element).html(html);
+		});	
+					
+		$('.display').html('<b>Display:</b> <a id="list_a" onclick="display(\'list\');"><i class="icon-list"></i></a>  <div id="grid_b"><i class="icon-th"></i></i></div>');
+		
+		$.totalStorage('display', 'grid');
+	}
+	if ($('body').width() > 940) {
+	// tooltip demo
+		$('.tooltip-toggle').tooltip({
+		selector: "a[data-toggle=tooltip]/index.htm"
+		})
+		$('.tooltip-1.htm').tooltip({
+			placement:'bottom'
+		})
+		$('.tooltip-2.htm').tooltip({
+			placement:'top'
+		})
+		}
+	
+}
+
+view = $.totalStorage('display');
+
+if (view) {
+	display('grid');
+} else {
+	display('grid');
+}
+//--></script> 
+<!--<script type="text/javascript">		(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+	$(window).load(function(){
+		if($(".cat-height").length){
+		$(".cat-height").equalHeights()}
+	})
+</script>-->
+
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</section>

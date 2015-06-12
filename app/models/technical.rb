@@ -1,3 +1,3 @@
 class Technical < ActiveRecord::Base
-  belongs_to :plant
+  has_one :plant
 end

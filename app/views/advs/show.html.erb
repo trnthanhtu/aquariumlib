@@ -1,0 +1,157 @@
+<div class="container">
+  <div id="notification"></div>
+  <div class="row">
+    <div class="span12">
+      <div class="row">
+        <div class="span9  " id="content">  <div class="breadcrumb">
+          <a href="">Home</a>
+          &raquo; <a href="<%=advs_path%>">GÓC RAO VẶT</a>
+          &raquo; <a href="">XEM BÀI VIẾT </a>
+        </div>
+        <div class="product-info">
+          <div class="row">
+            
+<div class="span9">
+  <div class="tabs">
+    <div class="tab-heading" id="s1">NỘI DUNG</div>
+    <div class="description" style="padding-bottom:0px">
+      <div class="product-section">
+        <div class="row">
+          <div class="span5 fleft">
+            <h3><%=@adv_show.title%></h3>
+            <p><span class="advs_style">Mục đích:</span> <%=@adv_show.type%></p>
+            <p><span class="advs_style">Người đăng bài:</span> <%=link_to @person_adv.name, accountss_path(@person_adv.id), class: 'link_view_account'%></p>
+            <p><span class="advs_style">Ngày đăng bài:</span> <%=@adv_show.created_at.strftime('%d - %m - %Y')%></p>
+           
+          </div>
+            <%if @adv_show.image.url != nil %>
+              <%=image_tag @adv_show.image, class: 'fright', style:'width:275px; height:183px'%>
+            <%else%>
+              <%=image_tag '/no_image.jpg', class: 'fright', style:'width:275px; height:183px'%>
+            <%end%>
+        <div class="span9">
+          <span  style="color:red">NỘI DUNG</span>
+          <p style="font-size:14px"><%=@adv_show.description%></p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <div class="tabs">
+    <div class="tab-heading" id="s2" >BÌNH LUẬN</div>
+    <div class="description"  style="padding-bottom:0px">
+      <div class="product-section">
+        <h3>TIN NHẮN</h3>
+        <div class="show-message fleft">
+          <%@message_list = Message.joins("left join user_accounts on user_accounts.id = messages.user_account_id").where(post_sell_id: @adv_show.id ).order( 'created_at asc')%>
+          <%@message_list.each do |ml|%>
+              <p class="span8"> 
+                <span class="message_style">
+                <% if  ml.user_account_id %>
+                <%= ml.user_account.name %>
+                <%else%>
+                  QUẢN TRỊ VIÊN
+                <%end%>
+                </span>: 
+                <%=ml.detail%> - 
+                <span class="message-date"><%=ml.created_at.strftime('%d/%m/%Y - %Hh%m')%></span>
+                <%if session[:account_id] == ml.user_account_id or session[:role_account] != nil %>
+                <span class="fright "><%=link_to "Xóa".html_safe, adv_destroy_message_path(ml.id), class: 'delete_button btn-sm btn-info', data: { confirm: "Xác nhận Xóa thông tin này?"} %></span>
+                <%end%>
+              </p>
+          <%end%>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+      <%if session[:account_id]%>
+      <hr/>
+      <h3 id="s3">VIẾT TIN NHẮN MỚI</h3>
+       <%=form_tag '', class: "form-message" do %>        
+          <textarea cols="40" rows="5" style="width:98%" name="description" id="description"></textarea>
+         <br/>
+         <%end%>
+          <%=link_to 'Đăng bình luận', advs_add_message_advs_path , class: 'message-btn btn fright'%>
+          <br/><br/>
+        <%end%>
+    </div>
+  </div>
+      </div>
+
+    </div>
+
+
+    <!-- Left menu -->
+    <aside class="span3 aside" id="column-left">
+      <div class="box account">
+        <div class="box-heading">DANH MỤC</div>
+        <div class="box-content">
+          <ul class="acount list_product">
+            <li><a href="#s1">NỘI DUNG</a></li>
+            <li><a href="#s2">TIN NHẮN</a></li>
+            <li><a href="#s3">VIẾT TIN NHẮN MỚI </a></li>  
+          </ul>
+        </div>
+       </div>
+        <script type="text/javascript">
+        if ($('.container.htm').width() > 723) {
+        (function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+        $(window).load(function(){
+        if($(".maxheight-spec.htm").length){
+        $(".maxheight-spec.htm").equalHeights()}
+        });
+        };
+        </script>
+      </aside>
+    </div>
+  </div>
+    <div class="clear"></div>
+</div>
+</div>
+<script>
+$(document).on('click', ".message-btn", function() {
+      var _this = $(this);
+      var link = _this.attr('href');
+      $.ajax({
+      cache: false,
+      type: "get",
+      url: link,
+      data: $(".form-message").serializeArray(),
+      success: function(res){
+        if (res.tb!=null){
+          alert('Lời nhắn của bạn đã được đăng');
+          $('#description').val('');
+          // $('.show-message').reload();
+        $(".show-message").load(location.href + ' .show-message');
+        }
+      }
+    });
+      return false;
+    });
+$(document).ready(function(){
+     setInterval(function(){
+     $('.show-message').load(location.href + ' .show-message');
+     }, 1000);
+}); 
+$(document).on('click', ".delete_button", function() {
+      var _this = $(this);
+      var link = _this.attr('href');
+      $.ajax({
+      cache: false,
+      type: "get",
+      url: link,
+      // data: $(".form-message").serializeArray(),
+      success: function(res){
+        if (res.tb!=null){
+          alert('Bạn đã xóa tin nhắn thành công');
+          $('#description').val('');
+          // $('.show-message').reload();
+        $(".show-message").load(location.href + ' .show-message');
+        }
+      }
+    });
+      return false;
+    });
+
+</script>

@@ -1,0 +1,60 @@
+<section>
+
+<div id="container">
+
+<div class="container">
+<div id="notification"></div>
+<div class="row">
+<div class="span12">
+	<div class="row">
+<div class="span9  " id="content">  <div class="breadcrumb">
+		<a href="">Home</a>
+		 &raquo; <a href=""><%=@title_page%></a>&raquo; <a href=""><%=@title_form%></a>
+	  </div>
+<div class="category-info">
+	<%= render 'form'%>
+</div>
+</div>
+  <aside class="span3 aside" id="column-left" >
+    <div class="clear"></div>
+<div class="box man">
+  <div class="box-heading"><span><%=@title_menu%></span></div>
+  <div class="box-content">
+        <ul class="info">
+        	
+        	  <li><%= link_to @adv.type %></li>
+       
+            </ul>
+        <div class="clear"></div>
+  </div>
+</div>    <script type="text/javascript">
+		(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+	$(window).load(function(){
+		if($(".maxheight.htm").length){
+		$(".maxheight.htm").equalHeights()}
+	})
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+$(function(){
+$('.new-products  li ').last().addClass('last');
+});
+}); 
+</script>
+    <script type="text/javascript">
+		(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+	$(window).load(function(){
+		if($(".maxheight-best.htm").length){
+		$(".maxheight-best.htm").equalHeights()}
+	})
+</script>
+  </aside>
+	</div>
+</div>
+
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</section>

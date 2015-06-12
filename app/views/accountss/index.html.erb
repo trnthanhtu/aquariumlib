@@ -1,0 +1,100 @@
+<div class="container">
+  <div id="notification"></div>
+  <div class="row">
+    <div class="span12">
+      <div class="row">
+        <div class="span9  " id="content">  <div class="breadcrumb">
+          <a href="<%=plants_path%>">Home</a>
+          &raquo; <a href="<%=accountss_path(@user_account_login)%>">THÔNG TIN CÁ NHÂN</a>
+        </div>
+        <div class="product-info">
+          <div class="row">
+            
+<div class="span9">
+  <div class="tabs">
+    <div class="tab-heading" id="s1">THÔNG TIN CÁ NHÂN</div>
+    <div class="description" style="padding-bottom:0px">
+      <div class="product-section">
+        <div class="row">
+          <div class="span5 fleft">
+            <% if session[:role_account] %>
+               <h3><span>HỌ TÊN: </span><%= @user_account_login.name%></h3>
+              <p><span class="advs_style">Chức vụ:</span>
+                <%if @user_account_login.role? :super_admin %>
+                  Superadmin
+                <%else%>
+                  admin
+                <%end%>
+          
+
+               </p>
+              <p><span class="advs_style">Địa chỉ:</span> <%=@user_account_login.address%></p>
+              <p><span class="advs_style">Ngày đăng kí:</span> <%=@user_account_login.created_at.strftime('%d - %m - %Y')%></p>
+            <%else%>
+            <h3><span>HỌ TÊN: </span><%=@user_account_login.name%></h3>
+            <p><span class="advs_style">Ngày sinh:</span> <%=@user_account_login.birthday.strftime('%d - %m - %Y')%></p>
+            <p><span class="advs_style">Số điện thoại:</span> <%=@user_account_login.phone_number%></p>
+            <p><span class="advs_style">Tên tài khoản:</span> <%=@user_account_login.usename%></p>
+            <p><span class="advs_style">Ngày đăng kí:</span> <%=@user_account_login.created_at.strftime('%d - %m - %Y')%></p>
+            <%end%>
+           
+          </div>
+         
+            <%=image_tag@user_account_login.image, class: 'fright', style:'width:275px; height:183px'%>
+            <br/>
+            <p><span>Ảnh đại diện:</span></p>
+          
+          <div class="span9">
+          <hr/>
+           <% if session[:account_id] == @user_account_login.id and session[:role_account] == nil%>
+            
+            <%=link_to 'Cập nhật thông tin', edit_accountss_path(@user_account_login.id), class: 'btn'%>
+            <%end%>
+          </div>        
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <div class="tabs">
+    <div class="tab-heading" id="s2" >CÁC HOẠT ĐỘNG GẦN ĐÂY</div>
+    <div class="description"  style="padding-bottom:0px">
+      <div class="product-section">
+        <h3>CÁC BÀI ĐÃ ĐĂNG</h3>
+        <hr>
+        <%if @advs%>
+        <%@advs.each do |a|%>
+          <p>
+            <%=a.created_at.strftime('%d/%m/%Y')%>
+            <span>đã viết:</span> 
+            <%=link_to a.title , adv_path(a.id), class: 'link_advs'%>
+          </p>
+        <%end%>
+        <%end%>
+      </div>
+
+    </div>
+  </div>
+      </div>
+
+    </div>
+
+
+    <!-- Left menu -->
+    <aside class="span3 aside" id="column-left">
+      <div class="box account">
+        <div class="box-heading">DANH MỤC</div>
+        <div class="box-content">
+          <ul class="acount list_product">
+            <li><a href="#s1">THÔNG TIN CÁ NHÂN</a></li>
+            <li><a href="#s2">CÁC HOẠT ĐỘNG GẦN ĐÂY</a></li>
+          </ul>
+        </div>
+       </div>
+      </aside>
+    </div>
+  </div>
+    <div class="clear"></div>
+</div>
+</div>

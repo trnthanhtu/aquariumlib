@@ -1,0 +1,169 @@
+<section>
+
+<div id="container">
+
+<div class="container">
+<div id="notification"></div>
+<div class="row">
+<div class="span12">
+	<div class="row">
+<div class="span9  " id="content">  <div class="breadcrumb">
+		<a href="<%=plants_path%>">Home</a>
+		 &raquo; <a href=""><%=@title_page%></a>&raquo; <a href=""><%=@title_form%></a>
+	  </div>
+<div class="category-info">
+	<%= render 'form'%>
+</div>
+</div>
+  <aside class="span3 aside" id="column-left" >
+    <div class="clear"></div>
+<div class="box man">
+  <div class="box-heading"><span><%=@title_page%></span></div>
+  <div class="box-content">
+        <ul class="info">
+        	<% @list_type.each do |lt|%>
+        	  <li><%= link_to lt, url_for(:type=> lt) %></li>
+        	<%end%>        
+            </ul>
+        <div class="clear"></div>
+  </div>
+</div>    <script type="text/javascript">
+		(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+	$(window).load(function(){
+		if($(".maxheight.htm").length){
+		$(".maxheight.htm").equalHeights()}
+	})
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+$(function(){
+$('.new-products  li ').last().addClass('last');
+});
+}); 
+</script>
+    <script type="text/javascript">
+		(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+	$(window).load(function(){
+		if($(".maxheight-best.htm").length){
+		$(".maxheight-best.htm").equalHeights()}
+	})
+</script>
+  </aside>
+	</div>
+</div>
+
+<script type="text/javascript"><!--
+function display(view) {
+	if (view == 'list') {
+		$('.product-grid ').attr('class', 'product-list');
+		$('.product-list ul').removeClass('row');
+		$('.product-list ul li').removeClass('span3');
+		$('.product-list ul li').each(function(index, element) {
+			html = '';
+					html += '<div class="row">';
+			var image = $(element).find('.image').html();
+			
+			if (image != null) {
+				html += '<div class="image span2">' + image + '</div>';
+			}
+			html += '<div class="left span6">';
+				html += '<div class="name">' + $(element).find('.name').html() + '</div>';
+				html += '<div class="description">' + $(element).find('.description').html() + '</div>';
+
+				html += '<div class="button details" style="float:right">' + $(element).find('.details').html() + '</div>';
+				
+				html += '<div class="clear">' + $(element).find('.clear').html() + '</div>';
+
+				var rating = $(element).find('.rating').html();
+				if (rating != null) {
+					html += '<div class="rating">' + rating + '</div>';
+				}
+				html += '</div>';
+				html += '</div>';
+			
+
+						
+			$(element).html(html);
+		});		
+		
+		$('.display').html('<b>Display:</b> <div id="list_b"><i class="icon-list"></i></div> <a id="grid_a" onclick="display(\'grid\');"><i class="icon-th"></i></a>');
+		
+		$.totalStorage('display', 'list'); 
+	} else {
+		$('.product-list').attr('class', 'product-grid');
+		$('.product-grid ul').addClass('row');
+		$('.product-grid ul li').addClass('span3');
+		$('.product-grid ul li').each(function(index, element) {
+			html = '';
+					
+			var image = $(element).find('.image').html();
+			
+			if (image != null) {
+				html += '<div class="image">' + image + '</div>';
+			}
+			html += '<div class="left">';
+			
+
+			(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+				$(window).load(function(){
+				if($(".subcatname.htm").length){
+				$(".subcatname.htm").equalHeights()}
+			});
+			
+			html += '<div class="name maxheight-subcat">' + $(element).find('.name').html() + '</div>';	
+			
+			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
+						
+			html += '<div class="button details" style="float:right" >' + $(element).find('.details').html() + '</div>';
+			
+			html += '<div class="clear">' + $(element).find('.clear').html() + '</div>';
+			var rating = $(element).find('.rating').html();
+			
+			if (rating != null) {
+				html += '<div class="rating">' + rating + '</div>';
+			}
+			
+			html += '</div>';
+			$(element).html(html);
+		});	
+					
+		$('.display').html('<b>Display:</b> <a id="list_a" onclick="display(\'list\');"><i class="icon-list"></i></a>  <div id="grid_b"><i class="icon-th"></i></i></div>');
+		
+		$.totalStorage('display', 'grid');
+	}
+	if ($('body').width() > 940) {
+	// tooltip demo
+		$('.tooltip-toggle').tooltip({
+		selector: "a[data-toggle=tooltip]/index.htm"
+		})
+		$('.tooltip-1.htm').tooltip({
+			placement:'bottom'
+		})
+		$('.tooltip-2.htm').tooltip({
+			placement:'top'
+		})
+		}
+	
+}
+
+view = $.totalStorage('display');
+
+if (view) {
+	display(view);
+} else {
+	display('grid');
+}
+//--></script> 
+<!--<script type="text/javascript">		(function($){$.fn.equalHeights=function(minHeight,maxHeight){tallest=(minHeight)?minHeight:0;this.each(function(){if($(this).height()>tallest){tallest=$(this).height()}});if((maxHeight)&&tallest>maxHeight)tallest=maxHeight;return this.each(function(){$(this).height(tallest)})}})(jQuery)
+	$(window).load(function(){
+		if($(".cat-height").length){
+		$(".cat-height").equalHeights()}
+	})
+</script>-->
+
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</section>

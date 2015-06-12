@@ -30,19 +30,22 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities                 # allow everyone to read everything
+    $session_account_admin = nil
     if user && user.admin?
       can :access, :rails_admin       # only allow admin users to access Rails Admin
       can :dashboard                  # allow access to dashboard
       if user.role? :super_admin
-        can :manage, [Plant, PlantImage, Account, Category, Post, Rating, Shop, Technical, Contact, Role, PostSell]            # allow superadmins to do anything
+        can [:read, :destroy], PostSell    
+        can [:read, :destroy], UserAccount  
+        can :manage, [Plant, PlantImage, Account, Category, Post, Shop, Technical, Contact, Role]            # allow superadmins to do anything
       elsif user.role? :member
          can [:read, :create, :update], [Plant, PlantImage, Post, Technical, Shop]
          can [:read, :destroy], Contact
          can [:show, :update], Account, :id => user.id
-         can :index, Role, :id =>user.roles
       elsif user.role? :guest
         # can :update, Product, :hidden => false  # allow sales to only update visible products
       end
+      $session_account_admin = user.id
     end
   end
 end

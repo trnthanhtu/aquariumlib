@@ -1,0 +1,39 @@
+<div class="tabs" id="tab-review">
+	<%=form_for :adv do |f| %>
+		<div class="tab-heading">
+			<%=@adv.type ? @adv.type : sort_type %>	</div>
+		<div class="tab-content">
+			<div id="review"></div>
+			<!-- Title form -->
+			<h2 id="review-title"><%=@title_form%></h2>
+
+			<!-- Tieu de field -->
+			<label class="label-form">Tiêu đề:</label>
+			<%=f.text_field :title, style: 'width:93%' %>
+			<br>
+			<br>
+			<!-- Hinh anh -->
+			<label class="label-form">Hình ảnh:</label>
+			<%=f.file_field :image %>
+			<br>
+			<%if @adv.image.url !=nil %>
+				<%=image_tag @adv.image, style: 'width:275px; height:183px'%>
+				<br/>
+			<%end%>
+			<br>
+
+			<!-- Noi Dung -->
+			<label class="label-form">Nội dung bài viết:</label>
+			<%=f.text_area :description, cols: '40', rows: '10', style: 'width:93%'%>
+			<div class="clear"></div>
+			<br>
+			<br>	
+			<div class="buttons fright">
+			    <%= f.submit 'XÁC NHẬN' , class: 'btn',id: 'submit-button' %>
+			   	<%= link_to 'HỦY', advs_path, class: 'btn'%>
+      			
+			<!-- <div><a id="button-review" class="button-cont-right">Continue<i class="icon-circle-arrow-right"></i></a></div> -->
+			</div>
+		</div>
+	<%end%>
+</div>

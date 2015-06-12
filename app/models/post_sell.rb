@@ -1,5 +1,7 @@
 class PostSell < ActiveRecord::Base
-	belongs_to :account
+	self.inheritance_column = :foo
+	belongs_to :user_account
+	has_many :messages
 
 	mount_uploader :image, ImageUploader
 end

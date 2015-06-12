@@ -1,0 +1,61 @@
+<div class="container">
+<div class="box-container">
+	<div class="login-content row-fluid">
+		<div class="span6">
+			<div class="left">
+				<div class="heading">
+					<i class="icon-file-alt"></i>
+					<div class="extra-wrap">
+						<h2>NGƯỜI DÙNG MỚI</h2>
+						<b>Đăng kí tài khoản mới</b>
+					</div>
+				</div>
+				<div class="content">
+					<p>Tạo tài khoản mới để được tham gia cộng đồng thủy sinh, đăng tin tức rao vặt xem và bình luận các bài viết chia sẻ và giúp đỡ mọi người để phát triển cộng đồng thủy sinh</p>
+					<a href="<%=registry_path%>" class="button-cont-right">Continue<i class="icon-circle-arrow-right"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="span6">
+			<div class="right">
+				<div class="heading">
+					<i class="icon-key"></i>
+					<div class="extra-wrap">
+						<h2>ĐĂNG NHẬP</h2>
+						<b>Tôi đã có tài khoản</b>
+					</div>
+				</div>
+				<%= form_tag login_path, :id => 'login', :class => 'form-horizontal' do %>
+					 <div class="controls" style="color:red"><%= flash[:error] %></div>
+					<div class="content">
+						<div class="control-group">
+							<label class="padd-form control-label" for="email">Tên tài khoản:</label>
+							<div class="controls">
+							<% if flash[:new_account] %>
+								<%= text_field_tag :usename, '', autofocus: true , :class => 'q1 margen-bottom', :value =>  flash[:new_account]%>
+							<%else%>
+
+						 		<%= text_field_tag :usename, '', autofocus: true , :class => 'q1 margen-bottom', :value =>  ''%>
+						 	<%end%>
+							</div>
+							 <div class="controls" style="color:red"><%= flash[:error1] %></div>
+						</div>
+						<div class="control-group">
+							<label class="padd-form control-label" for="password">Mật khẩu:</label>
+							<div class="controls">
+							 <%= password_field_tag :password,'', autocomplete: "off", class: 'q1 margen-bottom' %>
+							</div>
+							<div class="controls" style="color:red"><%= flash[:error2] %></div>
+						</div>
+						<div class="login-buttons">
+							<%= submit_tag "Đăng nhập", class:"button-cont-right" %>
+							
+						</div>
+					</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
